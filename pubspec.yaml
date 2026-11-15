@@ -1,0 +1,70 @@
+name: free_otp_app
+description: Free Temporary Number OTP App
+version: 1.0.0+1
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  webview_flutter: ^4.8.0
+  cupertino_icons: ^1.0.2
+flutter:
+  uses-material-design: true
+  import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
+void main() { runApp(const FreeOtpApp()); }
+
+class FreeOtpApp extends StatelessWidget {
+  const FreeOtpApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Free OTP',
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: const HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _index = 0;
+  
+  final List<Map<String,String>> _sites = [
+    {"name": "USA Numbers", "url": "https://sms24.me/en/numbers/usa"},
+    {"name": "UK Numbers", "url": "https://sms24.me/en/numbers/unitedkingdom"},
+    {"name": "All Numbers", "url": "https://receive-smss.com/"},
+    {"name": "Temp Numbers", "url": "https://temp-numbers.com/"},
+    {"name": "Free SMS", "url": "https://www.receive-sms-free.cc/"},
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(_sites[_index]["name"]!), backgroundColor: Colors.green),
+      body: WebViewWidget(controller: WebViewController()
+        ..setJavaScriptMode(JavaScriptMode.unrestricted)
+        ..loadRequest(Uri.parse(_sites[_index]["url"]!))
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _index,
+        onTap: (i) => setState(() => _index = i),
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.flag), label: "USA"),
+          BottomNavigationBarItem(icon: Icon(Icons.flag_outlined), label: "UK"),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: "All"),
+          BottomNavigationBarItem(icon: Icon(Icons.numbers), label: "Temp"),
+          BottomNavigationBarItem(icon: Icon(Icons.sms), label: "Free"),
+        ],
+      ),
+    );
+  }
+}
