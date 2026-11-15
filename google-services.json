@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "388862709601",
+    "project_id": "otp-app-86297",
+    "storage_bucket": "otp-app-86297.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388862709601:android:9cfb32d2af72848d2b3f20",
+        "android_client_info": {
+          "package_name": "com.company.appname"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjdABivVK05GP_jclz4sKBi2xqG96o0hk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
